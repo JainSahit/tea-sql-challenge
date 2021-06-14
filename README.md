@@ -1,6 +1,8 @@
 # tea-sql-challenge
 Text-em-All SQL Challange Submission
 
+Hi,
+
 submission.md contains the solutions with the all the queries and a few Tableau visualization.
 Images contains the screenshots.
 
