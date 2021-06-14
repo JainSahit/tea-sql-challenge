@@ -167,28 +167,28 @@ Item with the lowest gross profit, _**3 kg Courier post bag (White) 300x190x95mm
 
 ```sql
 SELECT TOP 1 WITH TIES StockItemName, UnitPrice, RecommendedRetailPrice, 
-    RecommendedRetailPrice-UnitPrice [MinProfit]
+    FORMAT(RecommendedRetailPrice-UnitPrice, 'C') [MinProfit]
 FROM Warehouse.StockItems
 ORDER BY MinProfit
 ```
 
 | StockItemID | StockItemName                              | UnitPrice | RecommendedRetailPrice | MinProfit |
 |-------------|--------------------------------------------|-----------|------------------------|-----------|
-| 188         | 3 kg Courier post bag (White) 300x190x95mm | 0.66      | 0.99                   | 0.33      |
+| 188         | 3 kg Courier post bag (White) 300x190x95mm | 0.66      | 0.99                   | $0.33     |
 
 
 Item with the highest gross profit, _**Air cushion machine (Blue)**_ with __$940.01__ profit.
 
 ```sql
 SELECT TOP 1 WITH TIES StockItemName, UnitPrice, RecommendedRetailPrice, 
-    RecommendedRetailPrice-UnitPrice [MaxProfit]
+    FORMAT(RecommendedRetailPrice-UnitPrice, 'C') [MaxProfit]
 FROM Warehouse.StockItems
 ORDER BY MaxProfit DESC
 ```
 
 | StockItemID | StockItemName              | UnitPrice | RecommendedRetailPrice | MaxProfit |
 |-------------|----------------------------|-----------|------------------------|-----------|
-| 215         | Air cushion machine (Blue) | 1899.00   | 2839.01                | 940.01    |
+| 215         | Air cushion machine (Blue) | 1899.00   | 2839.01                | $940.01   |
 
 
 Median gross profit across all items in the warehouse _$8.91_. That is item _**"The Gu" red shirt XML tag t-shirt (White) 6XL**_.
@@ -196,7 +196,7 @@ Median gross profit across all items in the warehouse _$8.91_. That is item _**"
 ```sql
 DECLARE @c BIGINT = (SELECT COUNT(*) FROM Warehouse.StockItems)
 
-SELECT StockItemID, StockItemName, AVG(1.0 * Profit) [Median Gross Profit]
+SELECT StockItemID, StockItemName, FORMAT(AVG(1.0 * Profit), 'C') [Median Gross Profit]
 FROM (
     SELECT StockItemID, StockItemName, RecommendedRetailPrice-UnitPrice [Profit] FROM Warehouse.StockItems
      ORDER BY Profit
@@ -208,4 +208,4 @@ GROUP BY StockItemID, StockItemName
 
 | StockItemID | StockItemName                                  | Median Gross Profit |
 |-------------|------------------------------------------------|---------------------|
-| 87          | "The Gu" red shirt XML tag t-shirt (White) 6XL | 8.910000            |
+| 87          | "The Gu" red shirt XML tag t-shirt (White) 6XL | $8.91               |
