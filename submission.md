@@ -54,6 +54,7 @@ ORDER BY YEAR(TransactionDate), MONTH(TransactionDate)
 | March     | 2016 | $5,330,250.56 |
 | April     | 2016 | $5,236,062.81 |
 | May       | 2016 | $5,704,232.71 |
+
 **Visualization**
 ![alt text](https://github.com/JainSahit/tea-sql-challenge/blob/main/images/Screen%20Shot%202021-06-13%20at%205.42.06%20PM.png?raw=true)
 
