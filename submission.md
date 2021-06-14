@@ -165,8 +165,6 @@ ORDER BY S.SupplierID
 # Challenge 4
 # Using "unit price" and "recommended retail price", which item in the warehouse has the lowest gross profit amount? Which item has the highest? What is the median gross profit across all items in the warehouse?
 
-Item with the lowest gross profit, _**3 kg Courier post bag (White) 300x190x95mm**_ with just __$0.33__ profit.
-
 **Query**
 
 ```sql
@@ -181,8 +179,7 @@ ORDER BY MinProfit
 |-------------|--------------------------------------------|-----------|------------------------|-----------|
 | 188         | 3 kg Courier post bag (White) 300x190x95mm | 0.66      | 0.99                   | $0.33     |
 
-
-Item with the highest gross profit, _**Air cushion machine (Blue)**_ with __$940.01__ profit.
+Item with the lowest gross profit, _**3 kg Courier post bag (White) 300x190x95mm**_ with just __$0.33__ profit.
 
 **Query**
 
@@ -199,7 +196,7 @@ ORDER BY MaxProfit DESC
 | 215         | Air cushion machine (Blue) | 1899.00   | 2839.01                | $940.01   |
 
 
-Median gross profit across all items in the warehouse _$8.91_. That is item _**"The Gu" red shirt XML tag t-shirt (White) 6XL**_.
+Item with the highest gross profit, _**Air cushion machine (Blue)**_ with __$940.01__ profit.
 
 **Query**
 
@@ -220,3 +217,5 @@ GROUP BY StockItemID, StockItemName
 | StockItemID | StockItemName                                  | Median Gross Profit |
 |-------------|------------------------------------------------|---------------------|
 | 87          | "The Gu" red shirt XML tag t-shirt (White) 6XL | $8.91               |
+
+Median gross profit across all items in the warehouse _$8.91_. That is item _**"The Gu" red shirt XML tag t-shirt (White) 6XL**_.
