@@ -167,12 +167,15 @@ ORDER BY S.SupplierID
 
 Item with the lowest gross profit, _**3 kg Courier post bag (White) 300x190x95mm**_ with just __$0.33__ profit.
 
+**Query**
+
 ```sql
 SELECT TOP 1 WITH TIES StockItemName, UnitPrice, RecommendedRetailPrice, 
     FORMAT(RecommendedRetailPrice-UnitPrice, 'C') [MinProfit]
 FROM Warehouse.StockItems
 ORDER BY MinProfit
 ```
+**Output**
 
 | StockItemID | StockItemName                              | UnitPrice | RecommendedRetailPrice | MinProfit |
 |-------------|--------------------------------------------|-----------|------------------------|-----------|
@@ -181,12 +184,15 @@ ORDER BY MinProfit
 
 Item with the highest gross profit, _**Air cushion machine (Blue)**_ with __$940.01__ profit.
 
+**Query**
+
 ```sql
 SELECT TOP 1 WITH TIES StockItemName, UnitPrice, RecommendedRetailPrice, 
     FORMAT(RecommendedRetailPrice-UnitPrice, 'C') [MaxProfit]
 FROM Warehouse.StockItems
 ORDER BY MaxProfit DESC
 ```
+**Output**
 
 | StockItemID | StockItemName              | UnitPrice | RecommendedRetailPrice | MaxProfit |
 |-------------|----------------------------|-----------|------------------------|-----------|
@@ -194,6 +200,8 @@ ORDER BY MaxProfit DESC
 
 
 Median gross profit across all items in the warehouse _$8.91_. That is item _**"The Gu" red shirt XML tag t-shirt (White) 6XL**_.
+
+**Query**
 
 ```sql
 DECLARE @c BIGINT = (SELECT COUNT(*) FROM Warehouse.StockItems)
@@ -207,6 +215,7 @@ FROM (
 ) AS X
 GROUP BY StockItemID, StockItemName
 ```
+**Output**
 
 | StockItemID | StockItemName                                  | Median Gross Profit |
 |-------------|------------------------------------------------|---------------------|
