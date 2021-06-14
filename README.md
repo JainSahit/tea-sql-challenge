@@ -3,7 +3,7 @@ Text-em-All SQL Challange Submission
 
 Hi,
 
-submission.md contains the solutions with the all the queries and a few Tableau visualization.
+submission.md contains the solutions with all the queries and a few Tableau visualization.
 Images contains the screenshots.
 
 It took me around 8-10 hours for finishing up the challenge and then a couple more for creating this repo.
