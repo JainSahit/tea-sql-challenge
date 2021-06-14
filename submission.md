@@ -167,7 +167,7 @@ ORDER BY S.SupplierID
 
 Item with the lowest gross profit, _**3 kg Courier post bag (White) 300x190x95mm**_ with just __$0.33__ profit.
 Item with the highest gross profit, _**Air cushion machine (Blue)**_ with __$940.01__ profit.
-Median gross profit across all items in the warehouse _$8.91_. That is item _**"The Gu" red shirt XML tag t-shirt (White) 6XL**_.
+Median gross profit across all items in the warehouse _$8.91_, that is item _**"The Gu" red shirt XML tag t-shirt (White) 6XL**_.
 
 **Query**
 
