@@ -1,6 +1,6 @@
 # Challenge 1
 # The leadership team has asked us to graph total monthly sales over time. Write a query that returns the data we need to complete this request.
-
+**Query**
 ```sql
 SELECT DATENAME(MONTH, DATEADD(M, MONTH(TransactionDate), - 1)) [Month],
    YEAR(TransactionDate) [Year],
@@ -10,7 +10,7 @@ WHERE TransactionTypeID=1
 GROUP BY YEAR(TransactionDate), MONTH(TransactionDate)
 ORDER BY YEAR(TransactionDate), MONTH(TransactionDate)
 ```
-![alt text](https://github.com/JainSahit/tea-sql-challenge/blob/main/images/Screen%20Shot%202021-06-13%20at%205.42.06%20PM.png?raw=true)
+**Output**
 | Month     | Year | Total Price   |
 |-----------|------|---------------|
 | January   | 2013 | $4,335,972.97 |
@@ -54,6 +54,8 @@ ORDER BY YEAR(TransactionDate), MONTH(TransactionDate)
 | March     | 2016 | $5,330,250.56 |
 | April     | 2016 | $5,236,062.81 |
 | May       | 2016 | $5,704,232.71 |
+**Visualization**
+![alt text](https://github.com/JainSahit/tea-sql-challenge/blob/main/images/Screen%20Shot%202021-06-13%20at%205.42.06%20PM.png?raw=true)
 
 # Challenge 2
 # What is the fastest growing customer category in Q1 2016 (compared to same quarter sales in the previous year)? What is the growth rate?
