@@ -68,7 +68,7 @@ ORDER BY YEAR(TransactionDate), MONTH(TransactionDate)
 Quarter sales can be interpreted in two ways.
 First, using quarterly revenue; Second, using quarterly order count. 
 
-According to quartley revenues, **"Computer Store"** had the highest growth rate of **3.74%%** from $919675.75 in Q1 2015 to $954037.45 in Q1 2016.
+According to quartley revenues, **"Computer Store"** had the highest growth rate of **3.74%** from $919675.75 in Q1 2015 to $954037.45 in Q1 2016.
 
 While according to quartley order counts, **"Supermarket"** had the highest growth rate of **25.31%** from 1272 order in Q1 2015 to 1594 orders in Q1 2016. 
 
