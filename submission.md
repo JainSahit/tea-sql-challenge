@@ -70,6 +70,7 @@ There are two possible ways of finding the fastest growing customer category in 
 First, using quarterly order count; Second, using quarterly revenue. 
 
 According to quartley order counts, **Supermarket** had the highest growth rate of **25.31%** from 1272 order in Q1 2015 to 1594 orders in Q1 2016. 
+
 While according to quartley revenues, **Computer Store** had the highest growth rate of **3.74%%** from $919675.75 in Q1 2015 to $954037.45 in Q1 2016.
 
 **Output**
