@@ -17,9 +17,60 @@ ORDER BY YEAR(TransactionDate), MONTH(TransactionDate)
 There are two possible ways of tracking quarterly customer category growth. First, using quarterly order count, and Second, using quarterly revenue. 
 Category "Customer Store" had the most growth in Q1 2016 according to both the order count and revenue. 
 
-There is a **23.62%** increase in the number of orders in Q1 2016 compared to Q1 2015, while a **18.88%** increase in quarterly revenues.
+Supermarket had the highest is a growth rate of **25.31%** according to quartley order counts in Q1 2016 compared to Q1 2015. 
+While Computer Store had the highest growth rate of **3.74%%** according to quartley revenues in Q1 2016 compared to Q1 2015. 
 
-![alt text](https://github.com/JainSahit/tea-sql-challenge/blob/main/images/Screen%20Shot%202021-06-13%20at%205.57.37%20PM.png?raw=true)
+| CustomerCategoryName | GrowthRate_OrderCount | GrowthRate_Revenue |
+|----------------------|-----------------------|--------------------|
+| Computer Store       | 12.83 %               | 3.74 %             |
+| Corporate            | -0.16 %               | -3.68 %            |
+| Gift Store           | -1.49 %               | 2.72 %             |
+| Novelty Shop         | 3.84 %                | 1.89 %             |
+| Supermarket          | 25.31 %               | 2.93 %             |
+
+```sql
+CREATE VIEW Q1_View AS
+    WITH Q1_CTE (CustomerCategoryName, OrderCount, Revenue, OrderDate)
+    AS
+    (
+        SELECT [CustomerCategories].[CustomerCategoryName] AS [CustomerCategoryName],
+        SUM(CAST(1 as BIGINT)) AS [OrderCount],
+        SUM((([t0].[Quantity]) * [t0].[UnitPrice])) AS [Revenue],
+        DATEPART(year,DATEADD(month,2,[t0].[OrderDate])) AS [OrderDate]
+        FROM [Sales].[Customers] [Customers]
+        INNER JOIN [Sales].[CustomerCategories] [CustomerCategories] ON ([Customers].[CustomerCategoryID] = [CustomerCategories].[CustomerCategoryID])
+        INNER JOIN (
+        SELECT [Orders].[CustomerID] AS [CustomerID],
+            [Orders].[OrderDate] AS [OrderDate],
+            [OrderLines].[Quantity] AS [Quantity],
+            [OrderLines].[UnitPrice] AS [UnitPrice]
+        FROM [Sales].[Orders] [Orders]
+            INNER JOIN [Sales].[OrderLines] [OrderLines] ON ([Orders].[OrderID] = [OrderLines].[OrderID])
+        ) [t0] ON ([Customers].[CustomerID] = [t0].[CustomerID])
+        WHERE ((DATEPART(quarter,DATEADD(month,2,[t0].[OrderDate])) = 1) AND (DATEPART(year,DATEADD(month,2,[t0].[OrderDate])) IN (2015, 2016)))
+        GROUP BY [CustomerCategories].[CustomerCategoryName],
+        DATEPART(quarter,DATEADD(month,2,[t0].[OrderDate])),
+        DATEPART(year,DATEADD(month,2,[t0].[OrderDate]))
+    )
+    SELECT CustomerCategoryName, OrderDate,
+        LAG(OrderCount)
+        OVER(PARTITION BY CustomerCategoryName ORDER BY OrderDate) AS PreviousYearOC,
+        OrderCount - LAG(OrderCount)
+        OVER (PARTITION BY CustomerCategoryName ORDER BY OrderDate) AS DifferencePreviousYearOC,
+        LAG(Revenue)
+        OVER(PARTITION BY CustomerCategoryName ORDER BY OrderDate) AS PreviousYearRevenue,
+        Revenue - LAG(Revenue)
+        OVER (PARTITION BY CustomerCategoryName ORDER BY OrderDate) AS DifferencePreviousYearRevenue
+    FROM Q1_CTE
+```
+*Subquey for Commom Table Expression generated through Tableau.
+```sql
+SELECT CustomerCategoryName,
+    FORMAT((CAST(DifferencePreviousYearOC AS FLOAT)/PreviousYearOC), 'P') AS [GrowthRate_OrderCount],
+    FORMAT((DifferencePreviousYearRevenue/PreviousYearRevenue), 'P') AS [GrowthRate_Revenue]
+FROM Q1_View WHERE OrderDate=2016
+```
+![alt text](https://github.com/JainSahit/tea-sql-challenge/blob/main/images/Screen%20Shot%202021-06-14%20at%202.55.11%20AM.png?raw=true)
 
 # Challenge 3
 # Write a query to return the list of suppliers that WWI has purchased from, along with # of invoices paid, # of invoices still outstanding, and average invoice amount.
