@@ -1,6 +1,7 @@
 # Challenge 1
 # The leadership team has asked us to graph total monthly sales over time. Write a query that returns the data we need to complete this request.
 **Query**
+
 ```sql
 SELECT DATENAME(MONTH, DATEADD(M, MONTH(TransactionDate), - 1)) [Month],
    YEAR(TransactionDate) [Year],
@@ -10,7 +11,9 @@ WHERE TransactionTypeID=1
 GROUP BY YEAR(TransactionDate), MONTH(TransactionDate)
 ORDER BY YEAR(TransactionDate), MONTH(TransactionDate)
 ```
+
 **Output**
+
 | Month     | Year | Total Price   |
 |-----------|------|---------------|
 | January   | 2013 | $4,335,972.97 |
@@ -56,6 +59,7 @@ ORDER BY YEAR(TransactionDate), MONTH(TransactionDate)
 | May       | 2016 | $5,704,232.71 |
 
 **Visualization**
+
 ![alt text](https://github.com/JainSahit/tea-sql-challenge/blob/main/images/Screen%20Shot%202021-06-13%20at%205.42.06%20PM.png?raw=true)
 
 # Challenge 2
@@ -67,6 +71,8 @@ Category "Customer Store" had the most growth in Q1 2016 according to both the o
 Supermarket had the highest is a growth rate of **25.31%** according to quartley order counts in Q1 2016 compared to Q1 2015. 
 While Computer Store had the highest growth rate of **3.74%%** according to quartley revenues in Q1 2016 compared to Q1 2015. 
 
+**Output**
+
 | CustomerCategoryName | GrowthRate_OrderCount | GrowthRate_Revenue |
 |----------------------|-----------------------|--------------------|
 | Computer Store       | 12.83 %               | 3.74 %             |
@@ -74,6 +80,8 @@ While Computer Store had the highest growth rate of **3.74%%** according to quar
 | Gift Store           | -1.49 %               | 2.72 %             |
 | Novelty Shop         | 3.84 %                | 1.89 %             |
 | Supermarket          | 25.31 %               | 2.93 %             |
+
+**Query**
 
 ```sql
 CREATE VIEW Q1_View AS
@@ -117,20 +125,15 @@ SELECT CustomerCategoryName,
     FORMAT((DifferencePreviousYearRevenue/PreviousYearRevenue), 'P') AS [GrowthRate_Revenue]
 FROM Q1_View WHERE OrderDate=2016
 ```
+
+**Visualization**
+
 ![alt text](https://github.com/JainSahit/tea-sql-challenge/blob/main/images/Screen%20Shot%202021-06-14%20at%202.55.11%20AM.png?raw=true)
 
 # Challenge 3
 # Write a query to return the list of suppliers that WWI has purchased from, along with # of invoices paid, # of invoices still outstanding, and average invoice amount.
 
-| SupplierID | SupplierName             | # Invoices Paid | # Invoices Outstanding | AVG Invoice Amount |
-|------------|--------------------------|-----------------|------------------------|--------------------|
-| 1          | A Datum Corporation      | 5               | 0                      | 5505.060000        |
-| 2          | Contoso, Ltd.            | 1               | 0                      | 360.530000         |
-| 4          | Fabrikam, Inc.           | 1053            | 1                      | 739825.574297      |
-| 5          | Graphic Design Institute | 13              | 0                      | 574.034615         |
-| 7          | Litware, Inc.            | 983             | 1                      | 311009.072621      |
-| 10         | Northwind Electric Cars  | 10              | 0                      | 9063.900000        |
-| 12         | The Phone Company        | 5               | 0                      | 11688.602000       |
+**Query**
 
 ```sql
 SELECT S.SupplierID, SupplierName, 
@@ -145,34 +148,51 @@ GROUP BY S.SupplierID, S.SupplierName
 ORDER BY S.SupplierID
 ```
 
+**Output**
+
+| SupplierID | SupplierName             | # Invoices Paid | # Invoices Outstanding | AVG Invoice Amount |
+|------------|--------------------------|-----------------|------------------------|--------------------|
+| 1          | A Datum Corporation      | 5               | 0                      | 5505.060000        |
+| 2          | Contoso, Ltd.            | 1               | 0                      | 360.530000         |
+| 4          | Fabrikam, Inc.           | 1053            | 1                      | 739825.574297      |
+| 5          | Graphic Design Institute | 13              | 0                      | 574.034615         |
+| 7          | Litware, Inc.            | 983             | 1                      | 311009.072621      |
+| 10         | Northwind Electric Cars  | 10              | 0                      | 9063.900000        |
+| 12         | The Phone Company        | 5               | 0                      | 11688.602000       |
+
 # Challenge 4
 # Using "unit price" and "recommended retail price", which item in the warehouse has the lowest gross profit amount? Which item has the highest? What is the median gross profit across all items in the warehouse?
 
 Item with the lowest gross profit, _**3 kg Courier post bag (White) 300x190x95mm**_ with just __$0.33__ profit.
+
 ```sql
 SELECT TOP 1 WITH TIES StockItemName, UnitPrice, RecommendedRetailPrice, 
     RecommendedRetailPrice-UnitPrice [MinProfit]
 FROM Warehouse.StockItems
 ORDER BY MinProfit
 ```
+
 | StockItemID | StockItemName                              | UnitPrice | RecommendedRetailPrice | MinProfit |
 |-------------|--------------------------------------------|-----------|------------------------|-----------|
 | 188         | 3 kg Courier post bag (White) 300x190x95mm | 0.66      | 0.99                   | 0.33      |
 
 
 Item with the highest gross profit, _**Air cushion machine (Blue)**_ with __$940.01__ profit.
+
 ```sql
 SELECT TOP 1 WITH TIES StockItemName, UnitPrice, RecommendedRetailPrice, 
     RecommendedRetailPrice-UnitPrice [MaxProfit]
 FROM Warehouse.StockItems
 ORDER BY MaxProfit DESC
 ```
+
 | StockItemID | StockItemName              | UnitPrice | RecommendedRetailPrice | MaxProfit |
 |-------------|----------------------------|-----------|------------------------|-----------|
 | 215         | Air cushion machine (Blue) | 1899.00   | 2839.01                | 940.01    |
 
 
 Median gross profit across all items in the warehouse _$8.91_. That is item _**"The Gu" red shirt XML tag t-shirt (White) 6XL**_.
+
 ```sql
 DECLARE @c BIGINT = (SELECT COUNT(*) FROM Warehouse.StockItems)
 
@@ -185,6 +205,7 @@ FROM (
 ) AS X
 GROUP BY StockItemID, StockItemName
 ```
+
 | StockItemID | StockItemName                                  | Median Gross Profit |
 |-------------|------------------------------------------------|---------------------|
 | 87          | "The Gu" red shirt XML tag t-shirt (White) 6XL | 8.910000            |
