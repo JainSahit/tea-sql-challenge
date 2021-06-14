@@ -3,12 +3,15 @@ Text-em-All SQL Challange Submission
 
 Hi,
 
-submission.md contains the solutions with all the queries and a few Tableau visualization.
-Images contains the screenshots.
+submission.md contains the solution with all the queries and a few Tableau visualizations.
+Images(folder) contains the screenshots.
 
-It took me around 8-10 hours for finishing up the challenge and then a couple more for creating this repo.
+It took me around 8-10 hours to finish up the challenge, and then a couple more for compiling this repository.
 
-If you have any question, please reach out to me at sjain123@asu.edu
-Looking forward to hearing from you.
+The challege was invigorating and I really enjoyed working on it.
 
-By: Sahit Jain
+If you have any questions, please reach out at sjain123@asu.edu
+Looking forward to hearing back.
+
+Regards,
+Sahit Jain
