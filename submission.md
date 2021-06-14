@@ -111,13 +111,13 @@ CREATE VIEW Q1_View AS
     )
     SELECT CustomerCategoryName, OrderDate,
         LAG(OrderCount)
-        OVER(PARTITION BY CustomerCategoryName ORDER BY OrderDate) AS PreviousYearOC,
+        OVER(PARTITION BY CustomerCategoryName ORDER BY OrderDate) AS [PreviousYearOC],
         OrderCount - LAG(OrderCount)
-        OVER (PARTITION BY CustomerCategoryName ORDER BY OrderDate) AS DifferencePreviousYearOC,
+        OVER (PARTITION BY CustomerCategoryName ORDER BY OrderDate) AS [DifferencePreviousYearOC],
         LAG(Revenue)
-        OVER(PARTITION BY CustomerCategoryName ORDER BY OrderDate) AS PreviousYearRevenue,
+        OVER(PARTITION BY CustomerCategoryName ORDER BY OrderDate) AS [PreviousYearRevenue],
         Revenue - LAG(Revenue)
-        OVER (PARTITION BY CustomerCategoryName ORDER BY OrderDate) AS DifferencePreviousYearRevenue
+        OVER (PARTITION BY CustomerCategoryName ORDER BY OrderDate) AS [DifferencePreviousYearRevenue]
     FROM Q1_CTE
 ```
 *Subquey for Commom Table Expression generated through Tableau.
@@ -139,8 +139,8 @@ FROM Q1_View WHERE OrderDate=2016
 
 ```sql
 SELECT S.SupplierID, SupplierName, 
-    COUNT(TransactionAmount) - COUNT(NULLIF(OutstandingBalance,0)) [# Invoices Paid], 
-    COUNT(NULLIF(OutstandingBalance,0)) [# Invoices Outstanding],
+    COUNT(TransactionAmount) - COUNT(NULLIF(OutstandingBalance,0)) [# of Invoices Paid], 
+    COUNT(NULLIF(OutstandingBalance,0)) [# of Invoices Outstanding],
     FORMAT(AVG(TransactionAmount), 'C') [AVG Invoice Amount]
 FROM Purchasing.Suppliers AS S
 JOIN Purchasing.SupplierTransactions 
@@ -152,15 +152,15 @@ ORDER BY S.SupplierID
 
 **Output**
 
-| SupplierID | SupplierName             | # Invoices Paid | # Invoices Outstanding | AVG Invoice Amount |
-|------------|--------------------------|-----------------|------------------------|--------------------|
-| 1          | A Datum Corporation      | 5               | 0                      | $5,505.06          |
-| 2          | Contoso, Ltd.            | 1               | 0                      | $360.53            |
-| 4          | Fabrikam, Inc.           | 1053            | 1                      | $739,825.57        |
-| 5          | Graphic Design Institute | 13              | 0                      | $574.03            |
-| 7          | Litware, Inc.            | 983             | 1                      | $311,009.07        |
-| 10         | Northwind Electric Cars  | 10              | 0                      | $9,063.90          |
-| 12         | The Phone Company        | 5               | 0                      | $11,688.60         |
+| SupplierID | SupplierName             | # of Invoices Paid | # of Invoices Outstanding | AVG Invoice Amount |
+|------------|--------------------------|--------------------|---------------------------|--------------------|
+| 1          | A Datum Corporation      | 5                  | 0                         | $5,505.06          |
+| 2          | Contoso, Ltd.            | 1                  | 0                         | $360.53            |
+| 4          | Fabrikam, Inc.           | 1053               | 1                         | $739,825.57        |
+| 5          | Graphic Design Institute | 13                 | 0                         | $574.03            |
+| 7          | Litware, Inc.            | 983                | 1                         | $311,009.07        |
+| 10         | Northwind Electric Cars  | 10                 | 0                         | $9,063.90          |
+| 12         | The Phone Company        | 5                  | 0                         | $11,688.60         |
 
 # Challenge 4
 # Using "unit price" and "recommended retail price", which item in the warehouse has the lowest gross profit amount? Which item has the highest? What is the median gross profit across all items in the warehouse?
