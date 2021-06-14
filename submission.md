@@ -10,7 +10,7 @@ WHERE TransactionTypeID=1
 GROUP BY YEAR(TransactionDate), MONTH(TransactionDate)
 ORDER BY YEAR(TransactionDate), MONTH(TransactionDate)
 ```
-![alt text](https://github.com/JainSahit/tea-sql-challenge/blob/main/Submissions/Screen%20Shot%202021-06-13%20at%205.42.06%20PM.png?raw=true)
+![alt text]https://github.com/JainSahit/tea-sql-challenge/blob/main/images/Screen%20Shot%202021-06-13%20at%205.42.06%20PM.png?raw=true)
 # Challenge 2
 # What is the fastest growing customer category in Q1 2016 (compared to same quarter sales in the previous year)? What is the growth rate?
 
@@ -19,7 +19,7 @@ Category "Customer Store" had the most growth in Q1 2016 according to both the o
 
 There is a **23.62%** increase in the number of orders in Q1 2016 compared to Q1 2015, while a **18.88%** increase in quarterly revenues.
 
-![alt text](https://github.com/JainSahit/tea-sql-challenge/blob/main/Submissions/Screen%20Shot%202021-06-13%20at%205.57.37%20PM.png?raw=true)
+![alt text](https://github.com/JainSahit/tea-sql-challenge/blob/main/images/Screen%20Shot%202021-06-13%20at%205.57.37%20PM.png?raw=true)
 
 # Challenge 3
 # Write a query to return the list of suppliers that WWI has purchased from, along with # of invoices paid, # of invoices still outstanding, and average invoice amount.
