@@ -4,13 +4,57 @@
 ```sql
 SELECT DATENAME(MONTH, DATEADD(M, MONTH(TransactionDate), - 1)) [Month],
    YEAR(TransactionDate) [Year],
-   SUM(TransactionAmount) [Total Price]
+   FORMAT(SUM(TransactionAmount), 'C') [Total Price]
 FROM Sales.CustomerTransactions
 WHERE TransactionTypeID=1
 GROUP BY YEAR(TransactionDate), MONTH(TransactionDate)
 ORDER BY YEAR(TransactionDate), MONTH(TransactionDate)
 ```
 ![alt text](https://github.com/JainSahit/tea-sql-challenge/blob/main/images/Screen%20Shot%202021-06-13%20at%205.42.06%20PM.png?raw=true)
+| Month     | Year | Total Price   |
+|-----------|------|---------------|
+| January   | 2013 | $4,335,972.97 |
+| February  | 2013 | $3,193,304.60 |
+| March     | 2013 | $4,451,081.62 |
+| April     | 2013 | $4,668,548.40 |
+| May       | 2013 | $5,080,661.05 |
+| June      | 2013 | $4,679,392.14 |
+| July      | 2013 | $5,039,033.18 |
+| August    | 2013 | $4,020,390.18 |
+| September | 2013 | $4,345,897.56 |
+| October   | 2013 | $4,315,500.25 |
+| November  | 2013 | $4,252,081.74 |
+| December  | 2013 | $4,181,408.95 |
+| January   | 2014 | $4,677,669.28 |
+| February  | 2014 | $3,990,741.07 |
+| March     | 2014 | $4,441,218.55 |
+| April     | 2014 | $4,709,520.43 |
+| May       | 2014 | $5,279,235.69 |
+| June      | 2014 | $4,906,641.36 |
+| July      | 2014 | $5,504,246.85 |
+| August    | 2014 | $4,698,313.60 |
+| September | 2014 | $4,465,414.61 |
+| October   | 2014 | $5,104,486.71 |
+| November  | 2014 | $4,621,813.04 |
+| December  | 2014 | $5,019,615.70 |
+| January   | 2015 | $5,061,954.63 |
+| February  | 2015 | $4,824,617.67 |
+| March     | 2015 | $5,207,351.93 |
+| April     | 2015 | $5,834,255.09 |
+| May       | 2015 | $5,152,840.72 |
+| June      | 2015 | $5,193,217.15 |
+| July      | 2015 | $5,929,023.38 |
+| August    | 2015 | $4,528,888.44 |
+| September | 2015 | $5,361,990.68 |
+| October   | 2015 | $5,165,857.34 |
+| November  | 2015 | $4,702,590.28 |
+| December  | 2015 | $5,127,633.50 |
+| January   | 2016 | $5,103,948.25 |
+| February  | 2016 | $4,596,534.78 |
+| March     | 2016 | $5,330,250.56 |
+| April     | 2016 | $5,236,062.81 |
+| May       | 2016 | $5,704,232.71 |
+
 # Challenge 2
 # What is the fastest growing customer category in Q1 2016 (compared to same quarter sales in the previous year)? What is the growth rate?
 
