@@ -65,11 +65,10 @@ ORDER BY YEAR(TransactionDate), MONTH(TransactionDate)
 # Challenge 2
 # What is the fastest growing customer category in Q1 2016 (compared to same quarter sales in the previous year)? What is the growth rate?
 
-There are two possible ways of tracking quarterly customer category growth. First, using quarterly order count, and Second, using quarterly revenue. 
-Category "Customer Store" had the most growth in Q1 2016 according to both the order count and revenue. 
+There are two possible ways of finding the fastest growing customer category in Q1 2016. First, using quarterly order count; Second, using quarterly revenue. 
 
-Supermarket had the highest is a growth rate of **25.31%** according to quartley order counts in Q1 2016 compared to Q1 2015. 
-While Computer Store had the highest growth rate of **3.74%%** according to quartley revenues in Q1 2016 compared to Q1 2015. 
+According to quartley order counts, **Supermarket** had the highest growth rate of **25.31%** from 1272 order in Q1 2015 to 1594 orders in Q1 2016. 
+While according to quartley revenues, **Computer Store** had the highest growth rate of **3.74%%** from $919675.75 in Q1 2015 to $954037.45 in Q1 2016.
 
 **Output**
 
